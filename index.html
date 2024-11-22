@@ -22,6 +22,10 @@
       background-color: #333;
       width: 100dvw;
       height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     * {
@@ -34,26 +38,26 @@
       margin: 4rem auto;
       padding: 2em;
       border-radius: 5px;
-      margin-top: 50px;
       color: #ccc;
       display: flex;
       flex-direction: column;
       gap: 2rem;
+      width: 100%;
+      max-width: 600px;
     }
 
     header {
       margin-bottom: 20px;
+      text-align: center;
     }
 
     h1 {
       margin: 0;
       font-size: 2rem;
-      line-height: 1.1;
     }
 
     section {
       margin-bottom: 20px;
-      padding: 2rem 0;
     }
 
     .form-group {
@@ -63,19 +67,10 @@
     .form-control {
       display: block;
       width: 100%;
-      height: 15rem;
-      padding: 2rem;
-      line-height: 1.42857143;
-      color: #555;
-      background-image: none;
+      padding: 1rem;
       font-size: 1rem;
       border-radius: 0.5rem;
-      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-      -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-      -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-      transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-      background-color: transparent;
+      background-color: #222;
       color: #ccc;
       border: 1px solid #ccc;
     }
@@ -83,22 +78,28 @@
     .form-control:focus {
       border-color: #66afe9;
       outline: 0;
-      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
-      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+      box-shadow: 0 0 8px rgba(102, 175, 233, .6);
     }
 
     .btn {
-      width: fit-content;
-      padding: 2rem 0;
-      border-radius: 1.5rem;
-      background-color: transparent;
+      width: 100%;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      background-color: #444;
       color: #ccc;
       border: 1px solid #ccc;
       font-size: 1rem;
+      cursor: pointer;
     }
 
-    p {
-      font-size: 1rem;
+    .btn:hover {
+      background-color: #555;
+    }
+
+    .balance {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
     }
   </style>
 </head>
@@ -110,12 +111,12 @@
     <div class="hidden" data-quiet-profile-name="audible"></div>
     <div>
       <header>
-        <h1>Account Balance:</h1>
+        <h1>
+          Balance:
+          <i data-quiet-receive-text-target>$5000</i>
+          <div class="hidden" data-quiet-warning></div>
+        </h1>
       </header>
-      <section>
-        <div class="hidden" data-quiet-warning></div>
-        <p data-quiet-receive-text-target>$5000</pre>
-      </section>
     </div>
 
     <div>
@@ -126,7 +127,7 @@
         <div class="hidden" data-quiet-warning></div>
         <div class="form-group">
           <textarea autofocus="true" autocapitalize="none" autocomplete="off" spellcheck="off" class="form-control"
-            style="resize:none" rows="15" data-quiet-text-input></textarea>
+            style="resize:none" rows="1" data-quiet-text-input></textarea>
         </div>
         <button type="button" class="btn" style="width:100%" data-quiet-send-button
           data-quiet-sending-text="Sending...">Send</button>

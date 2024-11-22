@@ -11,9 +11,20 @@ var TextReceiver = (function () {
 
     function onReceive(recvPayload) {
         // content = Quiet.mergeab(content, recvPayload);
-        content = recvPayload;
-        content += Quiet.ab2str(content);
-        target.textContent += content;
+        var currentBalance = parseFloat(target.textContent.replace('$', '')); // Parse the balance as a number
+        var receivedAmount = parseFloat(Quiet.ab2str(recvPayload)); // Convert to number
+
+        if (isNaN(receivedAmount)) {
+            console.error("Received payload is not a valid number.");
+            return;
+        }
+
+        // Add the received amount to the balance
+        currentBalance += receivedAmount;
+
+        // Update the target's text content with the new balance
+        target.textContent = `$${currentBalance.toFixed(2)}`;
+
         warningbox.classList.add("hidden");
     };
 

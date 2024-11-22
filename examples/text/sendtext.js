@@ -33,7 +33,13 @@ var TextTransmitter = (function () {
         transmit.transmit(Quiet.str2ab(payload));
 
         target = document.querySelector('[data-quiet-receive-text-target]');
-        target -= payload;
+        var currentBalance = parseFloat(target.textContent.replace('$', '')); // Parse the balance as a number
+
+        // Decrement the balance
+        currentBalance -= payload;
+
+        // Update the target's text content with the new balance
+        target.textContent = `$${currentBalance.toFixed(2)}`;
     };
 
     function onQuietReady() {

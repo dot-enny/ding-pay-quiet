@@ -1,4 +1,4 @@
-var TextTransmitter = (function() {
+var TextTransmitter = (function () {
     Quiet.init({
         profilesPrefix: "./",
         memoryInitializerPrefix: "./",
@@ -8,6 +8,7 @@ var TextTransmitter = (function() {
     var textbox;
     var warningbox;
     var transmit;
+    var target;
 
     function onTransmitFinish() {
         textbox.focus();
@@ -30,11 +31,14 @@ var TextTransmitter = (function() {
             return;
         }
         transmit.transmit(Quiet.str2ab(payload));
+
+        target = document.querySelector('[data-quiet-receive-text-target]');
+        target -= payload;
     };
 
     function onQuietReady() {
         var profilename = document.querySelector('[data-quiet-profile-name]').getAttribute('data-quiet-profile-name');
-        transmit = Quiet.transmitter({profile: profilename, onFinish: onTransmitFinish});
+        transmit = Quiet.transmitter({ profile: profilename, onFinish: onTransmitFinish });
         btn.addEventListener('click', onClick, false);
     };
 

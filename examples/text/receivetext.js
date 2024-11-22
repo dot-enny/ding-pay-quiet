@@ -1,4 +1,4 @@
-var TextReceiver = (function() {
+var TextReceiver = (function () {
     Quiet.init({
         profilesPrefix: "./",
         memoryInitializerPrefix: "./",
@@ -8,16 +8,20 @@ var TextReceiver = (function() {
     var content = new ArrayBuffer(0);
     var warningbox;
 
+
     function onReceive(recvPayload) {
-        content = Quiet.mergeab(content, recvPayload);
-        target.textContent = Quiet.ab2str(content);
+        // content = Quiet.mergeab(content, recvPayload);
+        content = recvPayload;
+        content += Quiet.ab2str(content);
+        target.textContent += content;
         warningbox.classList.add("hidden");
     };
 
     function onReceiverCreateFail(reason) {
         console.log("failed to create quiet receiver: " + reason);
         warningbox.classList.remove("hidden");
-        warningbox.textContent = "Sorry, it looks like this example is not supported by your browser. Please give permission to use the microphone or try again in Google Chrome or Microsoft Edge."
+        // warningbox.textContent = "Sorry, it looks like this example is not supported by your browser. Please give permission to use the microphone or try again in Google Chrome or Microsoft Edge."
+        warningbox.textContent = "Sorry, give permission to use mic "
     };
 
     function onReceiveFail(num_fails) {
@@ -27,10 +31,11 @@ var TextReceiver = (function() {
 
     function onQuietReady() {
         var profilename = document.querySelector('[data-quiet-profile-name]').getAttribute('data-quiet-profile-name');
-        Quiet.receiver({profile: profilename,
-             onReceive: onReceive,
-             onCreateFail: onReceiverCreateFail,
-             onReceiveFail: onReceiveFail
+        Quiet.receiver({
+            profile: profilename,
+            onReceive: onReceive,
+            onCreateFail: onReceiverCreateFail,
+            onReceiveFail: onReceiveFail
         });
     };
 

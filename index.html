@@ -14,6 +14,7 @@
     html {
       font-size: 1rem;
     }
+
     body {
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       line-height: 1.42857143;
@@ -22,6 +23,7 @@
       width: 100dvw;
       height: 100dvh;
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -94,19 +96,31 @@
       border: 1px solid #ccc;
       font-size: 1rem;
     }
+
     p {
       font-size: 1rem;
     }
-
   </style>
 </head>
 
 <body>
   <div class="hidden" data-quiet-profile-name="audible"></div>
   <div class="wrapper">
+
+    <div class="hidden" data-quiet-profile-name="audible"></div>
     <div>
       <header>
-        <h1>Send data</h1>
+        <h1>Account Balance:</h1>
+      </header>
+      <section>
+        <div class="hidden" data-quiet-warning></div>
+        <p data-quiet-receive-text-target>$5000</pre>
+      </section>
+    </div>
+
+    <div>
+      <header>
+        <h1>Send Cash</h1>
       </header>
       <section>
         <div class="hidden" data-quiet-warning></div>
@@ -116,17 +130,6 @@
         </div>
         <button type="button" class="btn" style="width:100%" data-quiet-send-button
           data-quiet-sending-text="Sending...">Send</button>
-      </section>
-    </div>
-  
-    <div class="hidden" data-quiet-profile-name="audible"></div>
-    <div>
-      <header>
-        <h1>Receive data</h1>
-      </header>
-      <section>
-        <div class="hidden" data-quiet-warning></div>
-        <p data-quiet-receive-text-target>Your received text will show up here. Waiting...</pre>
       </section>
     </div>
   </div>

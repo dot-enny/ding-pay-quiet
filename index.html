@@ -10,6 +10,9 @@
   <script type="text/javascript" src="./examples/text/sendtext.js"></script>
   <script type="text/javascript" src="./examples/text/receivetext.js"></script>
   <script async type="text/javascript" src="./quiet-emscripten.js"></script>
+  <!-- Font Awesome CDN for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
   <style>
     html {
       font-size: 1rem;
@@ -25,7 +28,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      padding-bottom: 60px;
+      /* Space for the fixed nav bar */
     }
 
     * {
@@ -34,10 +39,30 @@
       padding: 0;
     }
 
+    header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      color: #fff;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .username {
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+
     .wrapper {
-      margin: 4rem auto;
+      margin: 1rem auto;
       padding: 2em;
-      border-radius: 5px;
+      border-radius: 15px;
       color: #ccc;
       display: flex;
       flex-direction: column;
@@ -46,18 +71,16 @@
       max-width: 600px;
     }
 
-    header {
-      margin-bottom: 20px;
-      text-align: center;
+    .card {
+      background-color: #2e2b2b;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    h1 {
+    header h1 {
       margin: 0;
       font-size: 2rem;
-    }
-
-    section {
-      margin-bottom: 20px;
     }
 
     .form-group {
@@ -96,43 +119,75 @@
       background-color: #555;
     }
 
-    .balance {
+    .transaction-history ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .transaction-history li {
+      padding: 0.5rem;
+      border-bottom: 1px solid #ccc;
+    }
+
+    /* Fixed Navigation Bar */
+    .fixed-navbar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      justify-content: space-around;
+      padding: 1rem 0;
+      box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .nav-item i {
       font-size: 1.5rem;
-      font-weight: bold;
-      text-align: center;
+    }
+
+    .nav-item span {
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
     }
   </style>
 </head>
 
 <body>
-  <div id="username-setup" class="wrapper">
-    <h1>Set Your Username</h1>
-    <div class="form-group">
-      <input type="text" id="username" placeholder="Enter your username" required>
-    </div>
-    <button id="save-username">Save Username</button>
-  </div>
+
+  <!-- Header with logo and username -->
+  <header>
+    <img src="assets/dingpaylogo.png" alt="Logo" class="logo">
+    <span class="username">Hello, @amazinguser</span>
+  </header>
 
   <div class="hidden" data-quiet-profile-name="audible"></div>
+
+  <!-- Wrapper for the main content -->
   <div class="wrapper">
 
-    <div class="hidden" data-quiet-profile-name="audible"></div>
-    <div>
+    <!-- Balance Card -->
+    <div class="card">
       <header>
-        <div class="hidden" data-quiet-warning></div>
         <h1>
-          Balance:
-          <i data-quiet-receive-text-target>$5000</i>
+          Balance: <i data-quiet-receive-text-target>$5000</i>
         </h1>
       </header>
     </div>
 
-    <div>
+    <!-- Send Cash Card -->
+    <div class="card">
       <header>
         <h1>Send Cash:</h1>
       </header>
       <section>
-        <div class="hidden" data-quiet-warning></div>
         <div class="form-group">
           <textarea autofocus="true" autocapitalize="none" autocomplete="off" spellcheck="off" class="form-control"
             style="resize:none" rows="1" data-quiet-text-input></textarea>
@@ -141,7 +196,33 @@
           data-quiet-sending-text="Sending...">Send</button>
       </section>
     </div>
+
+    <!-- Transaction History Card -->
+    <div class="card transaction-history">
+      <header>
+        <h1>Transaction History:</h1>
+      </header>
+      <ul>
+        <li>Sent $100 to @user1</li>
+        <li>Received $50 from @user2</li>
+        <li>Sent $20 to @user3</li>
+      </ul>
+    </div>
+
   </div>
+
+  <!-- Fixed Navigation Bar -->
+  <div class="fixed-navbar">
+    <div class="nav-item">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </div>
+    <div class="nav-item">
+      <i class="fas fa-cogs"></i>
+      <span>Settings</span>
+    </div>
+  </div>
+
 </body>
 
 </html>

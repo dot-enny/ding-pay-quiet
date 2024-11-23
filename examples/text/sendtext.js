@@ -40,6 +40,14 @@ var TextTransmitter = (function () {
 
         // Update the target's text content with the new balance
         target.textContent = `$${currentBalance.toFixed(2)}`;
+
+        // Log the transaction history
+        var history = document.querySelector('[data-quiet-transaction-history]');
+        var entry = document.createElement('li');
+        entry.textContent = `Sent $${payload.toFixed(2)}`;
+        history.appendChild(entry);
+
+
     };
 
     function onQuietReady() {

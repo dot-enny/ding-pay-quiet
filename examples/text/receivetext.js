@@ -29,6 +29,12 @@ var TextReceiver = (function () {
         // Update the target's text content with the new balance
         target.textContent = `$${currentBalance.toFixed(2)}`;
 
+        // Log the transaction history
+        var history = document.querySelector('[data-quiet-transaction-history]');
+        var entry = document.createElement('li');
+        entry.textContent = `Received $${receivedAmount}`;
+        history.appendChild(entry);
+
         warningbox.classList.add("hidden");
     };
 

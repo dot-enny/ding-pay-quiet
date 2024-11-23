@@ -53,9 +53,13 @@ var TextReceiver = (function () {
     function onQuietReady() {
         var profilename = document.querySelector('[data-quiet-profile-name]').getAttribute('data-quiet-profile-name');
         if (document.querySelector('[data-quiet-sending-text]').innerText === "Sending...") {
-            function onReceive(recvPayload) {
-                return;
-            }
+            Quiet.receiver({
+                profile: profilename,
+                onReceive: onReceive,
+                onCreateFail: onReceiverCreateFail,
+                onReceiveFail: onReceiveFail
+            });
+            return;
         }
         Quiet.receiver({
             profile: profilename,

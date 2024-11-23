@@ -44,7 +44,7 @@ var TextTransmitter = (function () {
         // Log the transaction history
         var history = document.querySelector('[data-quiet-transaction-history]');
         var entry = document.createElement('li');
-        entry.textContent = `Sent $${payload.toFixed(2)}`;
+        entry.textContent = `Sent $${payload}`;
         history.appendChild(entry);
 
 

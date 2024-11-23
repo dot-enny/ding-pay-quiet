@@ -19,9 +19,13 @@ var TextReceiver = (function () {
             return;
         }
 
-        if (document.querySelector('[data-quiet-sending-text]').innerText === "Sending...") {
+        if (document.querySelector('[data-quiet-sending-text]').textContent === "Sending...") {
             return;
         }
+
+        // if (document.getElementById("send-btn").innerText === "Sending...") {
+        //     return;
+        // }
 
         // Add the received amount to the balance
         currentBalance += receivedAmount;

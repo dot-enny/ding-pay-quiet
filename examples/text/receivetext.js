@@ -19,6 +19,10 @@ var TextReceiver = (function () {
             return;
         }
 
+        if (document.querySelector('[data-quiet-sending-text]').innerText === "Sending...") {
+            return;
+        }
+
         // Add the received amount to the balance
         currentBalance += receivedAmount;
 
@@ -42,6 +46,11 @@ var TextReceiver = (function () {
 
     function onQuietReady() {
         var profilename = document.querySelector('[data-quiet-profile-name]').getAttribute('data-quiet-profile-name');
+        if (document.querySelector('[data-quiet-sending-text]').innerText === "Sending...") {
+            function onReceive(recvPayload) {
+                return;
+            }
+        }
         Quiet.receiver({
             profile: profilename,
             onReceive: onReceive,
